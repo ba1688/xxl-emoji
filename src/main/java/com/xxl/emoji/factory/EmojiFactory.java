@@ -184,7 +184,7 @@ public class EmojiFactory {
      */
     protected static UnicodeCandidate getNextUnicodeCandidate(char[] chars, int start) {
         for (int i = start; i < chars.length; i++) {
-            int emojiEnd = getEmojiEndPos(chars, i);
+            int emojiEnd = getFirstEmojiEndPos(chars, i);
 
             if (emojiEnd != -1) {
                 Emoji emoji = EmojiFactory.getByUnicode(new String(chars, i, emojiEnd - i));
@@ -197,7 +197,7 @@ public class EmojiFactory {
     }
 
     /**
-     * find end index of a unicode emoji, starting at index startPos, -1 if not found
+     * find end index of first unicode emoji, starting at index startPos, -1 if not found
      *
      * match the longest matching emoji, when emoji contain others
      *
@@ -205,7 +205,7 @@ public class EmojiFactory {
      * @param startPos
      * @return
      */
-    protected static int getEmojiEndPos(char[] text, int startPos) {
+    protected static int getFirstEmojiEndPos(char[] text, int startPos) {
         int best = -1;
         for (int j = startPos + 1; j <= text.length; j++) {
             EmojiTrie.Matches status = EmojiFactory.isEmoji(Arrays.copyOfRange(text, startPos, j));

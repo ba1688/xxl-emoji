@@ -54,7 +54,7 @@ XXL-EMOJI 是一个灵活可扩展的Emoji表情编解码库，可快速实现Em
 引入Maven依赖，即可直接使用。
 
 可参考以下示例代码：  
-(代码位置：/xxl-emoji/src/test/java/DemojiTest.java)
+(代码位置：/xxl-emoji/src/test/java/EmojiTest.java)
 
 ```java
 String input = "一朵美丽的茉莉🌹";

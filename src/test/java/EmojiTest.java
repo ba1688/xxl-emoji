@@ -6,7 +6,7 @@ import com.xxl.emoji.encode.EmojiEncode;
  *
  * @author xuxueli 2018-07-06 20:15:22
  */
-public class DemojiTest {
+public class EmojiTest {
 
     public static void main(String[] args) {
 

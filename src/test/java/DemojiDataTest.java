@@ -1,6 +1,10 @@
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * emoji data generate and test
@@ -10,20 +14,36 @@ import java.util.List;
 public class DemojiDataTest {
 
     public static void main(String[] args) {
-        List<String> readFileLines = readLines();
+        List<Map<String, String>> emojiData = readLines();
+        System.out.println(emojiData);
     }
 
 
-    public static List<String> readLines(){
+    public static List<Map<String, String>> readLines(){
         BufferedReader reader = null;
         try {
-            List<String> lines = new ArrayList<>();
+            List<Map<String, String>> lines = new ArrayList<>();
             reader = new BufferedReader(new InputStreamReader(DemojiDataTest.class.getResourceAsStream("emoji-ordering.txt"), "utf-8"));
             if (reader != null) {
                 StringBuilder sb = new StringBuilder();
                 String line = null;
                 while ((line = reader.readLine()) != null) {
-                    lines.add(line);
+                    if (line.contains(";") && line.contains("#")) {
+
+                        String version = null;
+                        String emoji = null;
+                        String unicode = null;
+                        String aliases = null;
+
+                        Map<String, String> emojiItem = new HashMap<>();
+                        emojiItem.put("line", line);
+                        emojiItem.put("version", version);
+                        emojiItem.put("emoji", emoji);
+                        emojiItem.put("unicode", unicode);
+                        emojiItem.put("aliases", aliases);
+
+                        lines.add(emojiItem);
+                    }
                 }
                 return lines;
             }

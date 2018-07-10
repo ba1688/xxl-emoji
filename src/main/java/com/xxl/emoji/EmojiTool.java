@@ -183,7 +183,7 @@ public class EmojiTool {
     // ------------------------ [find unicode emoji] ------------------------
 
     /**
-     * extract emojis
+     * find emojis
      *
      * @param input
      * @return
@@ -195,6 +195,17 @@ public class EmojiTool {
             result.add(emoji.getEmoji().getUnicode());
         }
         return result;
+    }
+
+    /**
+     * is emoji
+     *
+     * @param unicode
+     * @return
+     */
+    public static boolean isEmoji(String unicode) {
+        Emoji emoji = EmojiFactory.getByUnicode(unicode);
+        return emoji!=null?true:false;
     }
 
 }

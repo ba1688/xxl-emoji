@@ -1,12 +1,11 @@
 package com.xxl.emoji.factory;
 
-import com.xxl.emoji.EmojiTool;
-import com.xxl.emoji.model.Emoji;
-import com.xxl.emoji.loader.EmojiTrie;
 import com.xxl.emoji.exception.XxlEmojiException;
 import com.xxl.emoji.loader.EmojiDataLoader;
+import com.xxl.emoji.loader.EmojiTrie;
 import com.xxl.emoji.loader.impl.LocalEmojiDataLoader;
 import com.xxl.emoji.model.AliasCandidate;
+import com.xxl.emoji.model.Emoji;
 import com.xxl.emoji.model.UnicodeCandidate;
 
 import java.util.*;
@@ -63,7 +62,7 @@ public class EmojiFactory {
     }
 
 
-    // ---------------------- emoji base util ----------------------
+    // ---------------------- get unicode/alias emoji util ----------------------
 
     public static Emoji getForAlias(String alias) {
         if (alias == null) {
@@ -105,32 +104,13 @@ public class EmojiFactory {
         return ALL_EMOJIS;
     }
 
-    public static boolean isEmoji(String string) {
-        if (string == null) {
-            return false;
-        }
 
-        UnicodeCandidate unicodeCandidate = getNextUnicodeCandidate(string.toCharArray(), 0);
-        return unicodeCandidate != null &&
-                unicodeCandidate.getEmojiStartIndex() == 0 &&
-                unicodeCandidate.getFitzpatrickEndIndex() == string.length();
-    }
-
-    public static boolean isOnlyEmojis(String string) {
-        return string != null && EmojiTool.removeEmojis(string, null, null).length()==0;
-    }
-
-    public static EmojiTrie.Matches isEmoji(char[] sequence) {
-        return EMOJI_TRIE.isEmoji(sequence);
-    }
-
-
-    // ------------------------ unicode/alias util ------------------------
+    // ------------------------ find unicode/alias emoji util ------------------------
 
     private static final Pattern ALIAS_CANDIDATE_PATTERN = Pattern.compile("(?<=:)\\+?(\\w|\\||\\-)+(?=:)");
 
     /**
-     * find AliasCandidate for each emoji alias
+     * find AliasCandidate (alias) for each emoji alias
      *
      * @param input
      * @return
@@ -157,7 +137,7 @@ public class EmojiFactory {
     }
 
     /**
-     * find UnicodeCandidate for each unicode emoji, include Fitzpatrick modifier if follwing emoji.
+     * find UnicodeCandidate (unicode) for each unicode emoji, include Fitzpatrick modifier if follwing emoji.
      *
      *      Finally, it contains start and end index of unicode emoji itself (WITHOUT Fitzpatrick modifier whether it is there or not!).
      *
@@ -208,7 +188,7 @@ public class EmojiFactory {
     protected static int getFirstEmojiEndPos(char[] text, int startPos) {
         int best = -1;
         for (int j = startPos + 1; j <= text.length; j++) {
-            EmojiTrie.Matches status = EmojiFactory.isEmoji(Arrays.copyOfRange(text, startPos, j));
+            EmojiTrie.Matches status = EMOJI_TRIE.isEmoji(Arrays.copyOfRange(text, startPos, j));
 
             if (status.exactMatch()) {
                 best = j;

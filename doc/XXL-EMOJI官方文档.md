@@ -53,26 +53,27 @@ XXL-EMOJI 是一个灵活可扩展的Emoji表情编解码库，可快速实现Em
 
 引入Maven依赖，即可直接使用。
 
-可参考以下示例代码：
+可参考以下示例代码：  
+(代码位置：/xxl-emoji/src/test/java/DemojiTest.java)
 
 ```java
 String input = "一朵美丽的茉莉🌹";
 System.out.println("unicode：" + input);
 
-// 1、alias：将Emoji表情转换为别名，然后还原；
+// 1、alias
 String aliases = EmojiTool.encodeUnicode(input, EmojiEncode.ALIASES);
 System.out.println("\naliases encode: " + aliases);
-System.out.println("aliases decode: " + EmojiTool.decodeToUnicode(aliases));
+System.out.println("aliases decode: " + EmojiTool.decodeToUnicode(aliases, EmojiEncode.ALIASES));
 
-// 2、html decimal：将Emoji表情Unicode数据转换为十进制数据，然后还原；
+// 2、html decimal
 String decimal = EmojiTool.encodeUnicode(input, EmojiEncode.HTML_DECIMAL);
 System.out.println("\ndecimal encode: " + decimal);
-System.out.println("decimal decode: " + EmojiTool.decodeToUnicode(decimal));
+System.out.println("decimal decode: " + EmojiTool.decodeToUnicode(decimal, EmojiEncode.HTML_DECIMAL));
 
-// 3、html hex decimal：将Emoji表情Unicode数据转换为十六进制数据，然后还原；
+// 3、html hex decimal
 String hexdecimal = EmojiTool.encodeUnicode(input, EmojiEncode.HTML_HEX_DECIMAL);
 System.out.println("\nhexdecimal encode: " + hexdecimal);
-System.out.println("hexdecimal decode: " + EmojiTool.decodeToUnicode(hexdecimal));
+System.out.println("hexdecimal decode: " + EmojiTool.decodeToUnicode(hexdecimal, EmojiEncode.HTML_HEX_DECIMAL));
         
 ```
 
@@ -127,6 +128,7 @@ public static List<String> findEmojis(String input) | 查找输入字符转中�
 - 4、实时性：实时收录最新发布的Emoji；
 
 ### 版本 V1.0.1，新特性[迭代中]
+- 1、升级Emoji版本至最新Release版本：Unicode Emoji 11.0；
 
 ### TODO LIST
 - 1、Emoji远程编解码服务；

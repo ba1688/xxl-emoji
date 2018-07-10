@@ -30,7 +30,7 @@ public class EmojiTool {
      * @param transformer   emoji transformer to apply to each emoji
      * @return              input string with all emojis transformed
      */
-    public static String encodeUnicode(String input, EmojiTransformer transformer, FitzpatrickAction fitzpatrickAction) {
+    private static String encodeUnicode(String input, EmojiTransformer transformer, FitzpatrickAction fitzpatrickAction) {
         int prev = 0;
         StringBuilder sb = new StringBuilder();
         List<UnicodeCandidate> replacements = EmojiFactory.getUnicodeCandidates(input);
@@ -92,34 +92,52 @@ public class EmojiTool {
      * [unicode emoji << alias | html hex ]
      *
      * @param input
+     * @param emojiEncode
      * @return
      */
-    public static String decodeToUnicode(String input) {
-        // get all alias
-        List<AliasCandidate> candidates = EmojiFactory.getAliasCandidates(input);
+    public static String decodeToUnicode(String input, EmojiEncode emojiEncode) {
 
-        // replace the aliases by their unicode
         String result = input;
-        for (AliasCandidate candidate : candidates) {
-            Emoji emoji = EmojiFactory.getForAlias(candidate.alias);
-            if (emoji != null) {
-                if (emoji.supportsFitzpatrick() || (!emoji.supportsFitzpatrick() && candidate.fitzpatrick == null)) {
-                    String replacement = emoji.getUnicode();
-                    if (candidate.fitzpatrick != null) {
-                        replacement += candidate.fitzpatrick.unicode;
+
+        if (emojiEncode==null || emojiEncode==EmojiEncode.ALIASES) {
+            // replace the aliases by their unicode
+            List<AliasCandidate> candidates = EmojiFactory.getAliasCandidates(input);   // get all alias
+            for (AliasCandidate candidate : candidates) {
+                Emoji emoji = EmojiFactory.getForAlias(candidate.alias);
+                if (emoji != null) {
+                    if (emoji.supportsFitzpatrick() || (!emoji.supportsFitzpatrick() && candidate.fitzpatrick == null)) {
+                        String replacement = emoji.getUnicode();
+                        if (candidate.fitzpatrick != null) {
+                            replacement += candidate.fitzpatrick.unicode;
+                        }
+                        result = result.replace(":" + candidate.fullString + ":", replacement);
                     }
-                    result = result.replace(":" + candidate.fullString + ":", replacement);
                 }
             }
         }
 
-        // replace the html by their unicode
         for (Emoji emoji : EmojiFactory.getAll()) {
-            result = result.replace(emoji.getHtmlHexadecimal(), emoji.getUnicode());
-            result = result.replace(emoji.getHtmlDecimal(), emoji.getUnicode());
+            // replace the html by their unicode
+            if (emojiEncode==null || emojiEncode==EmojiEncode.HTML_DECIMAL) {
+                result = result.replace(emoji.getHtmlDecimal(), emoji.getUnicode());
+            }
+            // replace the html-hex by their unicode
+            if (emojiEncode==null || emojiEncode==EmojiEncode.HTML_HEX_DECIMAL) {
+                result = result.replace(emoji.getHtmlHexadecimal(), emoji.getUnicode());
+            }
         }
 
         return result;
+    }
+
+    /**
+     * decode emoji unicode
+     *
+     * @param input
+     * @return
+     */
+    public static String decodeToUnicode(String input) {
+        return decodeToUnicode(input, null);
     }
 
 

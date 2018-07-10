@@ -90,7 +90,7 @@ public class EmojiFactory {
         return EMOJIS_BY_TAG.get(tag);
     }
 
-    public static Collection<String> getAllTags() {
+    public static Set<String> getAllTags() {
         return EMOJIS_BY_TAG.keySet();
     }
 
@@ -101,7 +101,7 @@ public class EmojiFactory {
         return EMOJI_TRIE.getEmoji(unicode);
     }
 
-    public static Collection<Emoji> getAll() {
+    public static List<Emoji> getAll() {
         return ALL_EMOJIS;
     }
 

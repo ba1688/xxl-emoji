@@ -30,10 +30,12 @@ public class DemojiDataTest {
                 while ((line = reader.readLine()) != null) {
                     if (line.contains(";") && line.contains("#")) {
 
-                        String version = null;
-                        String emoji = null;
+                        String emojiAndAlias = line.substring(line.indexOf("#")+1).trim();
+
+                        String version = line.substring(line.indexOf(";")+1, line.indexOf("#")).trim();
+                        String emoji = emojiAndAlias.substring(0, emojiAndAlias.indexOf(" ")).trim();
                         String unicode = null;
-                        String aliases = null;
+                        String aliases = emojiAndAlias.substring(emojiAndAlias.indexOf(" ")+1).trim();
 
                         Map<String, String> emojiItem = new HashMap<>();
                         emojiItem.put("line", line);

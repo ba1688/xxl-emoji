@@ -1,4 +1,5 @@
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.xxl.emoji.EmojiTool;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -13,6 +14,14 @@ public class EmojiDataTest {
     public static void main(String[] args) throws IOException {
         // printEmojiList();
         List<String> emojiData = emojiData();
+
+        System.out.println("test start");
+        for (String emoji: emojiData) {
+            if (!EmojiTool.encodeUnicode(emoji).startsWith(":")) {
+                System.out.println("##### " + emoji);
+            }
+        }
+        System.out.println("test end");
     }
 
     private static List<String> emojiData(){

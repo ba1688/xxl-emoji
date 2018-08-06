@@ -11,7 +11,7 @@ import java.util.Map;
  *
  * @author xuxueli 2018-07-10 21:17:36
  */
-public class DemojiDataTest {
+public class EmojiOriginDataTest {
 
     public static void main(String[] args) {
         List<Map<String, String>> emojiData = readLines();
@@ -23,7 +23,7 @@ public class DemojiDataTest {
         BufferedReader reader = null;
         try {
             List<Map<String, String>> lines = new ArrayList<>();
-            reader = new BufferedReader(new InputStreamReader(DemojiDataTest.class.getResourceAsStream("emoji-ordering.txt"), "utf-8"));
+            reader = new BufferedReader(new InputStreamReader(EmojiOriginDataTest.class.getResourceAsStream("emoji-ordering.txt"), "utf-8"));
             if (reader != null) {
                 StringBuilder sb = new StringBuilder();
                 String line = null;

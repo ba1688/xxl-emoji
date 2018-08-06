@@ -1,3 +1,5 @@
+package data;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.xxl.emoji.EmojiTool;
 

@@ -132,6 +132,7 @@ public static List<String> findEmojis(String input) | 查找输入字符转中�
 
 ### TODO LIST
 - 1、Emoji远程编解码服务；
+- 2、精简配置文件，仅保留：emoji，aliases，tags等属性；
 
 
 ## 五、其他

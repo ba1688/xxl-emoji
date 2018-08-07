@@ -10,40 +10,40 @@ package com.xxl.emoji.fitzpatrick;
 public enum Fitzpatrick {
 
     /**
-     * [🏻]
+     * [🏻]["\uD83C\uDFFB"][]
      *
      * Type I (scores 0–6) always burns, never tans (pale white; blond or red hair; blue eyes; freckles).
      * Type II (scores 7–13) usually burns, tans minimally (white; fair; blond or red hair; blue, green, or hazel eyes)
      */
-    TYPE_1_2("\uD83C\uDFFB"),
+    TYPE_1_2("🏻"),
 
     /**
-     * [🏼]
+     * [🏼]["\uD83C\uDFFC"]
      *
      * Type III (scores 14–20) sometimes mild burn, tans uniformly (cream white; fair with any hair or eye color)
      */
-    TYPE_3("\uD83C\uDFFC"),
+    TYPE_3("🏼"),
 
     /**
-     * [🏽]
+     * [🏽]["\uD83C\uDFFD"]
      *
      * Type IV (scores 21–27) burns minimally, always tans well (moderate brown)
      */
-    TYPE_4("\uD83C\uDFFD"),
+    TYPE_4("🏽"),
 
     /**
-     * [🏾]
+     * [🏾]["\uD83C\uDFFE"]
      *
      * Type V (scores 28–34) very rarely burns, tans very easily (dark brown)
      */
-    TYPE_5("\uD83C\uDFFE"),
+    TYPE_5("🏾"),
 
     /**
-     * [🏿]
+     * [🏿]["\uD83C\uDFFF"]
      *
      * Fitzpatrick modifier of type 6 (black)
      */
-    TYPE_6("\uD83C\uDFFF");
+    TYPE_6("🏿");
 
     /**
      * Type VI (scores 35–36) Never burns, never tans (deeply pigmented dark brown to darkest brown)

@@ -36,13 +36,12 @@ public class EmojilibTest {
         for (Map.Entry<String, Map<String, Object>> emojiItem: emojiArr.entrySet()) {
 
             List<String> aliases = Arrays.asList(emojiItem.getKey());
-            String description = emojiItem.getKey();
             String emoji = emojiItem.getValue().get("char")+"";
             String unicode = emoji;
             boolean supports_fitzpatrick = Boolean.valueOf(String.valueOf(emojiItem.getValue().get("fitzpatrick_scale")));
             List<String> tags = (List<String>) emojiItem.getValue().get("keywords");
 
-            emojiList.add(new Emoji(description, supports_fitzpatrick, aliases, tags, unicode));
+            emojiList.add(new Emoji(unicode, aliases, tags, supports_fitzpatrick));
         }
         return emojiList;
     }

@@ -43,18 +43,7 @@ public class LocalEmojiDataLoader extends EmojiDataLoader {
 
                     Map<String, Object> emojiItemMap = (Map<String, Object>) emojiItem;
 
-                    if (!emojiItemMap.containsKey("unicode")) {
-                        continue;
-                    }
-
-                    String emoji = String.valueOf(emojiItemMap.get("emoji"));
                     String unicode = String.valueOf(emojiItemMap.get("unicode"));
-                    String description = String.valueOf(emojiItemMap.get("description"));
-
-                    boolean supports_fitzpatrick = false;
-                    if (emojiItemMap.containsKey("supports_fitzpatrick")) {
-                        supports_fitzpatrick = Boolean.valueOf(String.valueOf(emojiItemMap.get("supports_fitzpatrick")));
-                    }
 
                     List<String> aliases = null;
                     if (emojiItemMap.containsKey("aliases") && emojiItemMap.get("aliases") instanceof List) {
@@ -65,7 +54,12 @@ public class LocalEmojiDataLoader extends EmojiDataLoader {
                         tags = (List<String>) emojiItemMap.get("tags");
                     }
 
-                    Emoji emojiObj = new Emoji(description, supports_fitzpatrick, aliases, tags, unicode);
+                    boolean supports_fitzpatrick = false;
+                    if (emojiItemMap.containsKey("supports_fitzpatrick")) {
+                        supports_fitzpatrick = Boolean.valueOf(String.valueOf(emojiItemMap.get("supports_fitzpatrick")));
+                    }
+
+                    Emoji emojiObj = new Emoji(unicode, aliases, tags, supports_fitzpatrick);
                     emojis.add(emojiObj);
 
                 }

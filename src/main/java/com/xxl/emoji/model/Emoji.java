@@ -13,27 +13,25 @@ import java.util.List;
  */
 public class Emoji {
 
-    private final String description;
-    private final boolean supportsFitzpatrick;
+    private final String unicode;
     private final List<String> aliases;
     private final List<String> tags;
-    private final String unicode;
+    private final boolean supportsFitzpatrick;
+
     private final String htmlDec;
     private final String htmlHex;
 
 
-    public Emoji(String description,
-                 boolean supportsFitzpatrick,
+    public Emoji(String unicode,
                  List<String> aliases,
                  List<String> tags,
-                 String unicode) {
+                 boolean supportsFitzpatrick) {
 
         // fill data
-        this.description = description;
-        this.supportsFitzpatrick = supportsFitzpatrick;
+        this.unicode = unicode;
         this.aliases = Collections.unmodifiableList(aliases);   // refuse modefy
         this.tags = Collections.unmodifiableList(tags);
-        this.unicode = unicode;
+        this.supportsFitzpatrick = supportsFitzpatrick;
 
         // make dec/hex data
         int stringLength = getUnicode().length();
@@ -66,10 +64,6 @@ public class Emoji {
 
 
     // ---------------------- get ----------------------
-
-    public String getDescription() {
-        return description;
-    }
 
     public boolean supportsFitzpatrick() {
         return this.supportsFitzpatrick;

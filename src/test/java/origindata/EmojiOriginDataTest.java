@@ -1,4 +1,4 @@
-package data;
+package origindata;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -25,7 +25,7 @@ public class EmojiOriginDataTest {
         BufferedReader reader = null;
         try {
             List<Map<String, String>> lines = new ArrayList<>();
-            reader = new BufferedReader(new InputStreamReader(EmojiOriginDataTest.class.getResourceAsStream("data/emoji-ordering.txt"), "utf-8"));
+            reader = new BufferedReader(new InputStreamReader(EmojiOriginDataTest.class.getResourceAsStream("/origindata/emoji-ordering.txt"), "utf-8"));
             if (reader != null) {
                 StringBuilder sb = new StringBuilder();
                 String line = null;

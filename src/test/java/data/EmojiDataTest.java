@@ -2,6 +2,7 @@ package data;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.xxl.emoji.EmojiTool;
+import com.xxl.emoji.encode.EmojiEncode;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -14,13 +15,23 @@ import java.util.Map;
 public class EmojiDataTest {
 
     public static void main(String[] args) throws IOException {
-        // printEmojiList();
+        if (false) {
+            printEmojiList();
+            return;
+        }
+
         List<String> emojiData = emojiData();
 
         System.out.println("test start");
         for (String emoji: emojiData) {
-            if (!EmojiTool.encodeUnicode(emoji).startsWith(":")) {
-                System.out.println("##### " + emoji);
+            if (!EmojiTool.encodeUnicode(emoji, EmojiEncode.ALIASES).startsWith(":")) {
+                System.out.println("1##### " + emoji);
+            }
+            if (!EmojiTool.encodeUnicode(emoji, EmojiEncode.HTML_DECIMAL).startsWith("&#")) {
+                System.out.println("2##### " + emoji);
+            }
+            if (!EmojiTool.encodeUnicode(emoji, EmojiEncode.HTML_HEX_DECIMAL).startsWith("&#")) {
+                System.out.println("3##### " + emoji);
             }
         }
         System.out.println("test end");

@@ -10,7 +10,7 @@
 
     <name>${project.artifactId}</name>
     <description>A flexible emoji library for Java.</description>
-    <url>http://www.xuxueli.com/</url>
+    <url>https://www.xuxueli.com/</url>
 
     <properties>
         <slf4j-api.version>1.7.25</slf4j-api.version>
